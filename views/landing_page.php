@@ -7,7 +7,6 @@
 
     <style><?php include_once "public/css/fonts.css" ?></style>
     <style><?php include_once "public/css/landing_page.css" ?></style>
-    <link rel="stylesheet" href="css/landing_page.css">
 </head>
 <body>
     <nav class="menu">
