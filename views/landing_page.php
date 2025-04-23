@@ -1,3 +1,17 @@
+<?php
+
+require_once $_SERVER["DOCUMENT_ROOT"] . "/controllers/authController.php";
+
+$controller = new Authcontroller();
+$userData = $controller->checkAuthentification();
+
+if($userData) {
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/views/dashboard.php";
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +36,13 @@
     <div class="container">
         <img class="landing-image" src="imgs/home_design.png" alt="Illustration of school management app">
         
-        <h1 class="main-text">Your School, Simplified.</h1>
+    <h1 class="main-text">All your tasks in one place</h1>
         <h4 class="secondary-text">
-            Manage your courses, track your progress, and stay connected with your school—all in one place.
+            Manage your work, track your progress, and stay connected with your teams in one place.
         </h4>
 
         <div class="action-buttons">
-            <a href="/signup" class="btn primary">Become a teacher</a>
+            <a href="/signup" class="btn primary">Create my account</a>
             <a href="/signup" class="btn secondary">Get Started</a>
         </div>
     </div>
