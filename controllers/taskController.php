@@ -1,35 +1,40 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/taskManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/authManager.php';
+
+require_once $_SERVER["DOCUMENT_ROOT"] . "/controllers/authController.php";
 
 class TaskController {
     private $taskModel;
     private $auth;
 
-    public function __construct($pdo) {
+    public function __construct() {
         $this->taskModel = new TaskManager();
         $this->auth = new AuthManager();
     }
+    
 
     public function handleRequest() {
-        // Authenticate user by JWT
-        $jwt = $this->getBearerToken();
-        $userId = $this->auth->validateJWT($jwt);
+        $controller = new Authcontroller();
+        $user = $controller->checkAuthentification();
 
-        if (!$userId) {
-            echo json_encode(['error' => 'Unauthorized']);
+
+        if (!$user || !$user["user_id"]) {
+            return ['error' => 'Unauthorized'];
             return;
         }
 
+        $userId = $user["user_id"];
+        
         $method = $_SERVER['REQUEST_METHOD'];
+        error_log("arrived here" . " " . $userId . " " . $method);
 
         switch ($method) {
             case 'GET':
                 if (isset($_GET['id'])) {
-                    echo json_encode($this->taskModel->getTask($_GET['id'], $userId));
+                    return $this->taskModel->getTask($_GET['id'], $userId);
                 } else {
-                    echo json_encode($this->taskModel->getAllTasks($userId));
+                    return $this->taskModel->getAllTasks($userId);
                 }
                 break;
 
@@ -37,41 +42,32 @@ class TaskController {
                 $data = json_decode(file_get_contents('php://input'), true);
                 if (isset($data['title'])) {
                     $this->taskModel->addTask($data['title'], $userId);
-                    echo json_encode(['message' => 'Task added']);
+                    return ['message' => 'Task added'];
                 }
                 break;
 
             case 'PUT':
-                parse_str(file_get_contents('php://input'), $data);
+                $data = json_decode(file_get_contents('php://input'), true);
                 if (isset($data['id'], $data['status'])) {
                     $this->taskModel->updateTask($data['id'], $data['status'], $userId);
-                    echo json_encode(['message' => 'Task updated']);
+                    return ['message' => 'Task updated'];
                 }
                 break;
 
             case 'DELETE':
-                parse_str(file_get_contents('php://input'), $data);
+                $data = json_decode(file_get_contents('php://input'), true);
                 if (isset($data['id'])) {
                     $this->taskModel->deleteTask($data['id'], $userId);
-                    echo json_encode(['message' => 'Task deleted']);
+                    return ['message' => 'Task deleted'];
                 }
                 break;
 
             default:
                 http_response_code(405);
-                echo json_encode(['error' => 'Method Not Allowed']);
+                return ['error' => 'Method Not Allowed'];
                 break;
         }
     }
 
-    // Helper function to extract the JWT from the Authorization header
-    private function getBearerToken() {
-        $headers = apache_request_headers();
-        if (isset($headers['Authorization'])) {
-            return str_replace('Bearer ', '', $headers['Authorization']);
-        }
-
-        return null;
-    }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/authController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/taskController.php';
 
 
 $requestUri = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
@@ -14,8 +15,8 @@ error_log($method . " " . $requestUri);
 if($requestUri == "/") { 
     require_once($_SERVER["DOCUMENT_ROOT"] . "/views/landing_page.php");
 }
-if($requestUri == "/") {
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/views/landing_page.php");
+else if($requestUri == "/dashboard") {
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/views/dashboard.php");
 }
 else if ($requestUri == '/login') {
     if($method == 'POST') {
@@ -57,7 +58,7 @@ else if($requestUri == "/logout") {
     }
 }
 else if($requestUri == "/api/todo") {
-    $controller = new CourseController();
+    $controller = new TaskController();
     $response = $controller->handleRequest($method);
 
     header("Content-Type: application/json");

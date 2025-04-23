@@ -13,28 +13,28 @@ class AuthManager {
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function createUser($names, $surnames, $email, $phone, $birth_date, $gender, $role, $password) {
+    public function createUser($names, $surnames, $email, $phone, $birth_date, $gender, $password) {
         $hashed = password_hash($password, PASSWORD_BCRYPT);
 
         $stmt = $this->db->prepare("
-            INSERT INTO Users(names, surnames, email, phone, birth_date, gender, role, password)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO users(names, surnames, email, phone, birth_date, gender, password)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         ");
         $stmt->execute([
-            $names, $surnames, $email, $phone, $birth_date, $gender, $role, $hashed
+            $names, $surnames, $email, $phone, $birth_date, $gender, $hashed
         ]);
 
         return $this->db->lastInsertId();
     }
 
     public function getUserByEmail($email) {
-        $stmt = $this->db->prepare("SELECT user_id,  names, surnames, email, phone, birth_date, gender, role FROM Users WHERE email = ?");
+        $stmt = $this->db->prepare("SELECT user_id,  names, surnames, email, phone, birth_date, gender FROM users WHERE email = ?");
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function checkUser($email, $password) {
-        $stmt = $this->db->prepare("SELECT password FROM Users WHERE email = ?");
+        $stmt = $this->db->prepare("SELECT password FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         

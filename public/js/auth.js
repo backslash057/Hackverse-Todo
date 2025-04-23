@@ -47,6 +47,5 @@ form.addEventListener("submit", event => {
         datas[value] = key;
     });
 
-    console.log(datas);
     authenticate(form.action, datas);
 });
