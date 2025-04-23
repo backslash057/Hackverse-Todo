@@ -29,7 +29,7 @@ if ($userData) {
             <img src="imgs/logo.png" alt="Website logo">
         </div>
 
-        <div class="error_frame">Une erreur est survenue</div>
+        <div class="error_frame">An error occured</div>
 
         <form action="/signup" class="form signup-form">
             <div class="form-entry">
@@ -59,18 +59,11 @@ if ($userData) {
                     <option value="F">Female</option>
                 </select>
             </div>
-            <div class="form-entry">
-                <label class="form-label required" for="role">Role</label>
-                <select name="role" id="role">
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
-                </select>
-            </div>
             <div class="form-entry full-width">
                 <label class="form-label required" for="password">Password</label>
                 <input class="form-input" type="password" name="password" id="password" required>
             </div>
-            <input type="submit" value="S'inscrire" class="full-width">
+            <input type="submit" value="Sign up" class="full-width">
             <div class="form-footer full-width">
                 <span>Already have an account?</span>
                 <a href="/login">Log in</a>

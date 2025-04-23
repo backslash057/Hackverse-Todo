@@ -29,7 +29,7 @@ if($userData) {
             <img src="imgs/logo.png" alt="Website logo">
         </div>
 
-        <div class="error_frame">Une erreur est survenue</div> 
+        <div class="error_frame">An Error occured</div> 
 
         <form action="/login" class="form">
             <div class="form-entry">
@@ -42,8 +42,8 @@ if($userData) {
             </div>
             <input type="submit" value="Log in">
             <div class="form-footer full-width">
-                <span>Pas encore de compte?</span>
-                <a href="/signup">S'inscrire</a>
+                <span>No account yet?</span>
+                <a href="/signup">Sign up</a>
             </div>
         </form>
 
