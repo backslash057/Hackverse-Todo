@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Din round', sans-serif;
+    padding-top: 70px;
 }
 
 .menu {
@@ -23,15 +24,18 @@ body {
     padding: 10px 30px;
     background-color: #fff;
     height: 70px;
-    position: absolute;
+    position: fixed;
     top: 0;
+    left: 0;
+    z-index: 1000;
+    min-width: 310px;
 }
 
-.menu .logo img{
+.menu .logo img {
     height: 40px;
 }
 
-.menu-links{
+.menu-links {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -71,6 +75,7 @@ body {
     align-items: center;
     text-align: center;
     padding: 30px;
+    width: 100%;
 }
 
 .landing-image {
@@ -96,6 +101,8 @@ body {
     display: flex;
     gap: 15px;
     margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .btn {
@@ -126,9 +133,40 @@ body {
     background-color: #0056b3;
 }
 
-
 @media screen and (max-width: 500px) {
-    .menu .logo img{
+    .menu {
+        padding: 10px 15px;
+    }
+    
+    .menu .logo img {
         height: 30px;
     }
+    
+    .menu-links {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .main-text {
+        font-size: 1.5rem;
+    }
+    
+    .secondary-text {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+        
 }

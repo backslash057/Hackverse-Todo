@@ -30,7 +30,7 @@ if (!$userData) {
       <img class="dropdown-icon" src="/public/imgs/dropdown.png" alt="Dropdown button icon">
       <div class="dropdown">
         <a href="/logout" class="logout-btn">
-            <img src="imgs/logout.png" class="icon"> Logout
+            <img src="/public/imgs/logout.png" class="icon"> Logout
         </a>
       </div>
     </div>

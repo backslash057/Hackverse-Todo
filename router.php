@@ -64,12 +64,13 @@ else if($requestUri == "/api/todo") {
     header("Content-Type: application/json");
     echo json_encode($response);
 }
-else if ($method == "GET" && str_starts_with($requestUri, '/public/')) {
+else if (str_starts_with($requestUri, '/public/')) {
     $path = $_SERVER["DOCUMENT_ROOT"] . $requestUri;
-    $mime = mime_content_type($path);
-    header("Content-Type: $mime");
     if (file_exists($path)) {
-        include_once $path;
+        $mime = mime_content_type($path);
+        header("Content-Type: $mime");
+        readfile($path);
+        exit;
     }
 }
 else {
