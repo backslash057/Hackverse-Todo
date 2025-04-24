@@ -20,4 +20,4 @@ RewriteRule ^(.*)$ router.php [L]
 ```
 
 ## Screenshots
-![App screenshot](https://github.com/backslash057/Hackverse-Todo/screenshots/landing.png)
+![App screenshot](https://github.com/backslash057/Hackverse-Todo/blob/main/screenshots/landing.png)
