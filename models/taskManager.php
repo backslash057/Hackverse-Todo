@@ -1,15 +1,16 @@
 <?php
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/config.php";
+
 class TaskManager {
     protected $db;
 
     public function __construct() {
-        $host = "localhost";
-        $dbname = "todo_db";
-        $username = "root";
-        $password = "";
-
-        $this->db = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
+        $this->db = new PDO(
+            "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8",
+            DB_USER,
+            DB_PASS
+        );
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

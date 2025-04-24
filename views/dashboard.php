@@ -23,11 +23,11 @@ if (!$userData) {
 </head>
 <body>
   <nav class="menu">
-    <img src="imgs/logo.png" alt="Logo" class="logo">
+    <img src="/public/imgs/logo.png" alt="Logo" class="logo">
     <div class="profile-menu">
-      <img src="imgs/profile.jpg" alt="Profile" class="profile-icon">
+      <img src="/public/imgs/profile.jpg" alt="Profile" class="profile-icon">
       <?php echo($userData["names"] . " " . $userData["surnames"]); ?>
-      <img class="dropdown-icon" src="imgs/dropdown.png" alt="Dropdown button icon">
+      <img class="dropdown-icon" src="/public/imgs/dropdown.png" alt="Dropdown button icon">
       <div class="dropdown">
         <a href="/logout" class="logout-btn">
             <img src="imgs/logout.png" class="icon"> Logout
@@ -47,6 +47,6 @@ if (!$userData) {
 
   <div id="toast-container"></div>
 
-  <script src="js/dashboard.js"></script>
+  <script src="/public/js/dashboard.js"></script>
 </body>
 </html>

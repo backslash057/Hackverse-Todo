@@ -26,7 +26,7 @@ if ($userData) {
 
     <div class="container">
         <div class="logo">
-            <img src="imgs/logo.png" alt="Website logo">
+            <img src="/public/imgs/logo.png" alt="Website logo">
         </div>
 
         <div class="error_frame">An error occured</div>
@@ -71,6 +71,6 @@ if ($userData) {
         </form>
     </div>
 
-    <script src="js/auth.js"></script>
+    <script src="/public/js/auth.js"></script>
 </body>
 </html>

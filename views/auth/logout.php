@@ -35,7 +35,7 @@ $userData = $controller->checkAuthentification();
     <button class="link button">Disconnect me</button>
     <a href='/' class="link home">Return Home</a>
     
-    <script src="js/logout.js"></script>
+    <script src="/public/js/logout.js"></script>
 <?php
     }
 ?>
