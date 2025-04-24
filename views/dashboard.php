@@ -1,4 +1,16 @@
+<?php
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/controllers/authController.php";
+
+$controller = new AuthController();
+$userData = $controller->checkAuthentification();
+
+if (!$userData) {
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/views/landing_page.php";
+    exit;
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,12 +19,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Todo List App</title>
   <style><?php include_once $_SERVER["DOCUMENT_ROOT"] . "/public/css/dashboard.css" ?></style>
+  <style><?php include_once $_SERVER["DOCUMENT_ROOT"] . "/public/css/fonts.css" ?></style>
 </head>
 <body>
+  <nav class="menu">
+    <img src="imgs/logo.png" alt="Logo" class="logo">
+    <div class="profile-menu">
+      <img src="imgs/profile.jpg" alt="Profile" class="profile-icon">
+      <?php echo($userData["names"] . " " . $userData["surnames"]); ?>
+      <img class="dropdown-icon" src="imgs/dropdown.png" alt="Dropdown button icon">
+      <div class="dropdown">
+        <a href="/logout" class="logout-btn">
+            <img src="imgs/logout.png" class="icon"> Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+
   <h1><span class="heading">TODO</span> List</h1>
 
   <div class="input-div">
-    <input type="text" class="input" placeholder="What do you want to do...">
+    <input type="text" class="input" placeholder="Add a task...">
     <button class="add-button">Add</button>
   </div>
 
